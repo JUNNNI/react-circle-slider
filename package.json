@@ -1,0 +1,38 @@
+{
+    "name": "circle-slider",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@types/styled-components": "^5.1.26",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-use": "^17.4.0",
+        "styled-components": "^5.3.6"
+    },
+    "devDependencies": {
+        "@types/react": "^17.0.39",
+        "@types/react-dom": "^17.0.11",
+        "@vitejs/plugin-react": "^2.2.0",
+        "eslint": "^8.29.0",
+        "eslint-config-react-app": "^7.0.1",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "typescript": "^4.6.4",
+        "vite": "^3.2.3",
+        "vite-plugin-eslint": "^1.8.1"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app"
+        ],
+        "rules": {
+            "react-hooks/rules-of-hooks": "error",
+            "react-hooks/exhaustive-deps": "warn"
+        }
+    }
+}
