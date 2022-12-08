@@ -7,6 +7,7 @@ type Props = {
     clockwise?: boolean;
     roundSize?: number;
     handleSize?: number;
+    stepper?: number;
     zeroStartFrom?: 'top' | 'bottom' | 'left' | 'right';
     isAngleVisible?: boolean; // Shows the angle in the middle of the round
     fontSizeAngle?: string; // Requires `isAngleVisble` to be enabled
@@ -20,6 +21,7 @@ export const CircleSlider = ({
     angle = 0,
     clockwise = true,
     zeroStartFrom = 'top',
+    stepper = 0,
     isAngleVisible = true,
     roundSize = 36,
     handleSize = 8,
@@ -89,16 +91,19 @@ export const CircleSlider = ({
     const onUserMovesHandle = useCallback(
         (e: MouseEvent) => {
             e.preventDefault();
-            const rawAngle = getRawAngle(e);
+            let rawAngle = getRawAngle(e);
+
+            if (stepper) {
+                rawAngle = Math.ceil(rawAngle / stepper) * stepper;
+            }
 
             setInputAngle(rawAngle);
-
             const editedOutputAngle = formatOutputAngle(rawAngle);
             setOutputAngle(editedOutputAngle);
 
             onSliderMove?.(editedOutputAngle);
         },
-        [formatOutputAngle, getRawAngle, onSliderMove],
+        [formatOutputAngle, getRawAngle, onSliderMove, stepper],
     );
 
     const onUnPressHandle = useCallback(

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const App = () => {
     const [angle, setAngle] = useState(45);
+    const stepper = 15;
 
     const onSliderUp = (editedAngle: number) => {
         // setAngle(editedAngle);
@@ -15,28 +16,34 @@ const App = () => {
     };
 
     return (
-        <Container>
-            <Content>
-                <Title>{angle}°</Title>
-                <Button onClick={() => setAngle(90)}>Update to 90°</Button>
-                <Button onClick={() => setAngle((angle) => angle + 10)}>Update +10°</Button>
-            </Content>
+        <>
+            <Container>
+                <Content>
+                    <div>
+                        <Title>{angle}°</Title>
+                        <p>Stepper: {stepper}</p>
+                    </div>
+                    <Button onClick={() => setAngle(90)}>Update to 90°</Button>
+                    <Button onClick={() => setAngle((angle) => angle + 10)}>Update +10°</Button>
+                </Content>
 
-            <CirclesContainer>
-                <CircleSlider
-                    roundSize={80}
-                    handleSize={15}
-                    roundThickness={5}
-                    angle={angle}
-                    fontSizeAngle="20px"
-                    onSliderMove={onSliderMove}
-                    onSliderUp={onSliderUp}
-                />
-                <CircleSlider angle={angle} onSliderMove={onSliderMove} onSliderUp={onSliderUp} />
-            </CirclesContainer>
+                <CirclesContainer>
+                    <CircleSlider
+                        roundSize={80}
+                        handleSize={15}
+                        roundThickness={5}
+                        stepper={15}
+                        angle={angle}
+                        fontSizeAngle="20px"
+                        onSliderMove={onSliderMove}
+                        onSliderUp={onSliderUp}
+                    />
+                    <CircleSlider angle={angle} stepper={15} onSliderMove={onSliderMove} onSliderUp={onSliderUp} />
+                </CirclesContainer>
 
-            <InputNumber min={0} max={360} value={angle} onChange={setAngle} />
-        </Container>
+                <InputNumber min={0} max={360} value={angle} onChange={setAngle} />
+            </Container>
+        </>
     );
 };
 
